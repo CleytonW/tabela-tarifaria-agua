@@ -2,6 +2,8 @@ package com.cleytonmelo.watertariff.model;
 
 import java.math.BigDecimal;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,6 +29,7 @@ public class FaixaConsumo {
 
     private BigDecimal valorUnitario;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "categoria_id")
     private CategoriaConsumidor categoria;

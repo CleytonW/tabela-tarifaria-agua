@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.cleytonmelo.watertariff.model.enums.TipoCategoria;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -32,6 +33,7 @@ public class CategoriaConsumidor {
     @Enumerated(EnumType.STRING)
     private TipoCategoria tipo;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "tabela_tarifaria_id")
     private TabelaTarifaria tabelaTarifaria;
