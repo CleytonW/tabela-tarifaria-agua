@@ -11,6 +11,6 @@ public record TabelaTarifariaRequest(
         String nome,
         LocalDate dataVigencia,
         @NotEmpty(message = "Tabela tem que ter no minimo uma categoria de consumidor")
-        List<CategoriaConsumidorRequest> categoria) {
+        List<CategoriaConsumidorRequest> categorias) {
 
 }
