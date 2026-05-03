@@ -44,11 +44,11 @@ public class CalculoTarifaService {
                 break;
             }
 
-            int tamanhoDaFaixa = (faixa.getFimM3() - faixa.getInicioM3()) + 1;
+            int tamanhoDaFaixa = (faixa.getFimM3() - faixa.getInicioM3());
 
             int m3Cobrados = Math.min(consumoRestante, tamanhoDaFaixa);
 
-            BigDecimal subtotal = faixa.getValorUnitario().multiply(faixa.getValorUnitario());
+            BigDecimal subtotal = faixa.getValorUnitario().multiply(BigDecimal.valueOf(m3Cobrados));
 
             valorTotal = valorTotal.add(subtotal);
             consumoRestante -= m3Cobrados;
