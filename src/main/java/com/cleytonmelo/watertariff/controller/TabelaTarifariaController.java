@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,10 +34,12 @@ public class TabelaTarifariaController {
         return ResponseEntity.status(HttpStatus.CREATED).body(novaTabela);
     }
 
+    @GetMapping
     public ResponseEntity<List<TabelaTarifaria>> listar() {
         return ResponseEntity.ok(repository.findAll());
     }
 
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> excluir(@PathVariable long id) {
         if (!repository.existsById(id)) {
             return ResponseEntity.notFound().build();
