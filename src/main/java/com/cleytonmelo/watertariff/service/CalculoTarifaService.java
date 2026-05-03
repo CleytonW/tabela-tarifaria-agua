@@ -38,20 +38,23 @@ public class CalculoTarifaService {
 
         List<DetalhamentoFaixaConsumoResponse> detalhamento = new ArrayList<>();
 
+        int consumoProcessado = 0;
+
         for (FaixaConsumo faixa : faixasOrdenadas) {
 
             if (consumoRestante <= 0) {
                 break;
             }
 
-            int tamanhoDaFaixa = (faixa.getFimM3() - faixa.getInicioM3());
+            int capacidadeDaFaixa = faixa.getFimM3() - consumoProcessado;
 
-            int m3Cobrados = Math.min(consumoRestante, tamanhoDaFaixa);
+            int m3Cobrados = Math.min(consumoRestante, capacidadeDaFaixa);
 
             BigDecimal subtotal = faixa.getValorUnitario().multiply(BigDecimal.valueOf(m3Cobrados));
 
             valorTotal = valorTotal.add(subtotal);
             consumoRestante -= m3Cobrados;
+            consumoProcessado += m3Cobrados;
 
             detalhamento.add(new DetalhamentoFaixaConsumoResponse(new FaixaConsumoResponse(faixa.getInicioM3(), faixa.getFimM3()), m3Cobrados, faixa.getValorUnitario(), subtotal));
         }
